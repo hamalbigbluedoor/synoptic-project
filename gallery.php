@@ -15,7 +15,7 @@
 
 <?php add_image(); ?>
 
-<form action="" method="post" enctype="multipart/form-data" class="image-form">
+<form action="" method="post" enctype="multipart/form-data" class="form">
   <h2>Upload your Image Now!</h2>
   <div class="form-group">
     <label for="image">Choose your local Image:</label>
@@ -27,13 +27,13 @@
     <!-- A select list to dynamically display all categories in database -->
     <label for="image_subject">Please select a subject for your image:</label>
     <br>
-    <select name="image_subject" id="image_subject">
+    <select class="form-select" aria-label="subject select list" name="image_subject" id="image_subject" >
       <?php subjectSelectList(); ?>
     </select>
   </div>
   <br>
   <div class="form-group">
-    <input type="submit" class="btn btn-primary" name="upload_image" value="Upload Image">
+    <input type="submit" class="button" name="upload_image" value="Upload Image">
   </div>
 </form>
 
