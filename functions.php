@@ -24,7 +24,7 @@ function subjectData() {
   while ($row = mysqli_fetch_assoc($select_subject)) {
     $subject_id = $row['subject_id'];
     $subject_title = $row['subject_title'];
-    echo "<li class='list'><a href='subject.php?subject=$subject_id'>$subject_title</a></li>";
+    echo "<li class='list '><a class='button' href='subject.php?subject=$subject_id'>$subject_title</a></li>";
   }
 }
 
@@ -50,7 +50,7 @@ function filterImages() {
     $image = $row['image_name'];
     ?>
     <div class="itemBox">
-      <img src="images/<?php echo $image; ?>" alt="hello">
+      <img src="images/<?php echo $image; ?>" alt="image">
     </div>
 
   <?php
@@ -75,7 +75,7 @@ function allImages() {
     ?>
 
     <div class="itemBox">
-      <img src="images/<?php echo $image; ?>" alt="hello">
+      <img src="images/<?php echo $image; ?>" alt="image">
     </div>
 
   <?php 
@@ -123,5 +123,50 @@ function subjectSelectList() {
     $subject_id = $row['subject_id'];
     $subject_title = $row['subject_title'];
     echo "<option value='{$subject_id}'>{$subject_title}</option>";
+  }
+}
+
+function emailValidation() {
+  global $connection;
+  global $msg;
+  global $msgClass;
+  $msg = '';
+  $msgClass= '';
+
+  if(isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $subject = $_POST['subject'];
+    $mailfrom = $_POST['mail'];
+    $message = $_POST['message'];
+
+    //  Check required fields
+    if(!empty($mailfrom) && !empty($name) && !empty($message) && !empty($subject)) {
+      // Check email
+      if(filter_var($mailfrom, FILTER_VALIDATE_EMAIL) === false) {
+        // Failed
+        $msg = 'Please use a valid email';
+        $msgClass = 'alert-danger';
+      } else {
+        // Passed
+        $mailTo = "hamal@bigbluedoor.net";
+        $headers = "From: " . $mailfrom;
+        $txt = "You have received an e-mail from " . $name . ".\n\n" . $message;
+        
+        // Checks if the values are sent
+        if(mail($mailTo, $subject, $txt, $headers)) {
+          // Email sent
+          $msg = 'Your email has been sent!';
+          $msgClass = 'alert-success';
+        } else {
+          // Email not sent
+          $msg = 'Your email was not sent!';
+          $msgClass = 'alert-danger';
+        };
+      }
+    } else {
+      // Failed
+      $msg = 'Please fill in all fields';
+      $msgClass = 'alert-danger';
+    }
   }
 }
