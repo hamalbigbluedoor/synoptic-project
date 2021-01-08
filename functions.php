@@ -86,27 +86,27 @@ function allImages() {
 *  Upload Image
 */
 function add_image() {
-	global $connection;
-	
-	if (isset($_POST['upload_image'])) {
+  global $connection;
+  
+  if (isset($_POST['upload_image'])) {
     $image_subject = $_POST['image_subject'];
-		// superglobal file is used for type="file"
-		$post_image = $_FILES['image']['name'];
-		// File is saved temporarily when we click on 'choose file'
-		$post_image_temp = $_FILES['image']['tmp_name'];
-		// Moves file from temp location to our folder
-		move_uploaded_file($post_image_temp, "./images/$post_image");
-		// Inserts into referenced column's in images table
-		$query = "INSERT INTO images (image_subject_id, image_name)"; 
-		// These values are coming in from the form
-		$query .= "VALUES ({$image_subject}, '{$post_image}')";
+    // superglobal file is used for type="file"
+    $post_image = $_FILES['image']['name'];
+    // File is saved temporarily when we click on 'choose file'
+    $post_image_temp = $_FILES['image']['tmp_name'];
+    // Moves file from temp location to our folder
+    move_uploaded_file($post_image_temp, "./images/$post_image");
+    // Inserts into referenced column's in images table
+    $query = "INSERT INTO images (image_subject_id, image_name)"; 
+    // These values are coming in from the form
+    $query .= "VALUES ({$image_subject}, '{$post_image}')";
 
-		$upload_image_query = mysqli_query($connection, $query);
-		confirmQuery($upload_image_query);
+    $upload_image_query = mysqli_query($connection, $query);
+    confirmQuery($upload_image_query);
 
-		echo "Image Uploaded!";
-	  header("Location: gallery.php");
-	}
+    echo "Image Uploaded!";
+    header("Location: gallery.php");
+  }
 }
 
 /**
@@ -115,13 +115,13 @@ function add_image() {
 function subjectSelectList() {
   global $connection;
 
-	$query = "SELECT * FROM subjects";
-	$select_subjects = mysqli_query($connection, $query);
-	confirmQuery($select_subjects);
+  $query = "SELECT * FROM subjects";
+  $select_subjects = mysqli_query($connection, $query);
+  confirmQuery($select_subjects);
 
-	while($row = mysqli_fetch_assoc($select_subjects)) {
-		$subject_id = $row['subject_id'];
-		$subject_title = $row['subject_title'];
-		echo "<option value='{$subject_id}'>{$subject_title}</option>";
-	}
+  while($row = mysqli_fetch_assoc($select_subjects)) {
+    $subject_id = $row['subject_id'];
+    $subject_title = $row['subject_title'];
+    echo "<option value='{$subject_id}'>{$subject_title}</option>";
+  }
 }
