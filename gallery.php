@@ -4,11 +4,11 @@
 <?php include "./includes/subject-list.php" ?>
 
 <section class="gallery">	
-	<div class="product">
+  <div class="product">
 
 <?php allImages(); ?>
 
-	</div>
+  </div>
 </section>
 
 <?php include "./includes/footer.php" ?>
