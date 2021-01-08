@@ -134,39 +134,39 @@ function emailValidation() {
   $msgClass= '';
 
   if(isset($_POST['submit'])) {
-  	$name = $_POST['name'];
-  	$subject = $_POST['subject'];
-  	$mailfrom = $_POST['mail'];
-  	$message = $_POST['message'];
+    $name = $_POST['name'];
+    $subject = $_POST['subject'];
+    $mailfrom = $_POST['mail'];
+    $message = $_POST['message'];
 
-  	//  Check required fields
-  	if(!empty($mailfrom) && !empty($name) && !empty($message) && !empty($subject)) {
-  		// Check email
-  		if(filter_var($mailfrom, FILTER_VALIDATE_EMAIL) === false) {
-  			// Failed
-  			$msg = 'Please use a valid email';
-  			$msgClass = 'alert-danger';
-  		} else {
-  			// Passed
-  			$mailTo = "hamal@bigbluedoor.net";
-  			$headers = "From: " . $mailfrom;
-  			$txt = "You have received an e-mail from " . $name . ".\n\n" . $message;
-  			
-  			// Checks if the values are sent
-  			if(mail($mailTo, $subject, $txt, $headers)) {
-  				// Email sent
-  				$msg = 'Your email has been sent!';
-  				$msgClass = 'alert-success';
-  			} else {
-  				// Email not sent
-  				$msg = 'Your email was not sent!';
-  				$msgClass = 'alert-danger';
-  			};
-  		}
-  	} else {
-  		// Failed
-  		$msg = 'Please fill in all fields';
-  		$msgClass = 'alert-danger';
-  	}
+    //  Check required fields
+    if(!empty($mailfrom) && !empty($name) && !empty($message) && !empty($subject)) {
+      // Check email
+      if(filter_var($mailfrom, FILTER_VALIDATE_EMAIL) === false) {
+        // Failed
+        $msg = 'Please use a valid email';
+        $msgClass = 'alert-danger';
+      } else {
+        // Passed
+        $mailTo = "hamal@bigbluedoor.net";
+        $headers = "From: " . $mailfrom;
+        $txt = "You have received an e-mail from " . $name . ".\n\n" . $message;
+        
+        // Checks if the values are sent
+        if(mail($mailTo, $subject, $txt, $headers)) {
+          // Email sent
+          $msg = 'Your email has been sent!';
+          $msgClass = 'alert-success';
+        } else {
+          // Email not sent
+          $msg = 'Your email was not sent!';
+          $msgClass = 'alert-danger';
+        };
+      }
+    } else {
+      // Failed
+      $msg = 'Please fill in all fields';
+      $msgClass = 'alert-danger';
+    }
   }
 }
