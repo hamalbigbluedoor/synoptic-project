@@ -8,7 +8,7 @@
       <li><a href="gallery.php">Photo Catalogue</a></li>
       <li><a href="">About Me</a></li>
       <li><a href="contact.php">Contact</a></li>
-      <li><a href="blog.php">Blog</a></li>
+      <li><a href="blogs.php">Blog</a></li>
     </ul>
   </div>
 </div>

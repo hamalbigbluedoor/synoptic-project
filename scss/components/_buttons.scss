@@ -28,3 +28,19 @@
     transition: 0.4s;
   }
 }
+.main-buttons {
+  border-radius: 0.25rem;
+  background-color: $black;
+  border: 2px solid $white;
+  color: $white;
+  padding: 8px 20px;	
+  margin: 5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  &:hover {
+    background: $white;
+    border: 2px solid $black;
+    color: $black;
+    transition: 0.4s;
+  }
+}
