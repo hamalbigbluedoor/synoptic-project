@@ -1,0 +1,2 @@
+$(document).ready((function(){var t=2;$("#blog-button").click((function(){t+=2,$("#blog").load("load-blogs.php",{blogNewCount:t})}));var e=document.querySelectorAll("img"),o=new IntersectionObserver((function(t,e){t.forEach((t=>{if(t.isIntersecting){var o=t.target;o.setAttribute("src",o.getAttribute("data-src")),e.unobserve(o)}}))}),{rootMargin:"0px 0px 10% 0px"});e.forEach((t=>{o.observe(t)}))}));
+//# sourceMappingURL=min.js.map

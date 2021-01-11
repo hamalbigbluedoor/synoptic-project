@@ -3,17 +3,14 @@
 <?php include "./includes/navigation.php" ?>
 <?php include "./includes/subject-list.php" ?>
 
-<?php upload_image(); ?>
+<?php uploadImage(); ?>
 
 <section class="gallery">	
   <div class="product">
-
-  <?php 
-  allImages();
-  ?>
-
+    <?php allImages(); ?>
   </div>
 </section>
+
 <form action="" method="post" enctype="multipart/form-data" class="form">
   <div class="title">
     <h2>Upload your Image Now!</h2>

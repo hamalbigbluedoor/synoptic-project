@@ -1,0 +1,111 @@
+.homepage {
+  .hero {
+    .hero-image {
+      width: 100%;
+      max-width: 100%;
+      padding-top: 0%;
+      min-height: 80vh;
+      background-image: url(/images/hero-image.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-text {
+      color: white;
+      font-weight: bold;
+      font-size: 50px;
+      position: absolute;
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      top: 80px;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,.3);
+      .hero-subtitle {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 400;
+        text-align: center;
+      }
+    }
+  }
+
+  h2 {
+    margin-bottom: 80px;
+  }
+  .recent-photos {
+    padding: 20px;
+    width: 1280px;
+    margin: 40px auto;
+    text-align: center;
+    .product {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      .itemBox {
+        position: relative;
+        width: calc(50% - 220px);
+        height: 300px;
+        margin: 5px;
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }   
+  .recent-blogs {
+    width: 1280px;
+    margin: 40px auto;
+    text-align: center;
+    a {
+      color: $black!important;
+    }
+    .blog-main-button {
+      color: $white!important;
+      &:hover {
+      color: $black!important;
+      }
+    }
+    .blog-card {
+      max-width: 980px;
+      margin: 0 auto 32px;
+      border-radius: 5px;
+      background: #fff;
+      display: flex;
+      height: 225px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px 0 rgba(1,22,39,.2);
+      text-decoration: none;
+      transition: all .25s ease-in-out;
+    }
+    .blog-card-text {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 32px;
+    }
+    .blog-card-image {
+      position: relative;
+      overflow: hidden;
+      max-height: 300px;
+      height: 600px;
+      width: 600px;
+      img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+  }
+}

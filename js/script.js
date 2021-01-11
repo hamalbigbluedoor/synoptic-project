@@ -14,7 +14,7 @@ $(document).ready(function(){
   /**
   * Intersection Observer
   */
-  var images = document.querySelectorAll('img.gallery-image');
+  var images = document.querySelectorAll('img');
   // 2 params - Callback function and options
   var observer = new IntersectionObserver(function(entries, observer){
     entries.forEach(entry => {
