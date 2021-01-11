@@ -7,11 +7,11 @@ const jsPath = './js/*.js';
 
 // Minifies all JS files in and creates min.js
 function jsTask() {
-	return src(jsPath)
-		.pipe(sourcemaps.init())
-		.pipe(concat('min.js'))
-		.pipe(terser())
-		.pipe(sourcemaps.write('.'))
-		.pipe(dest('./js'));
+  return src(jsPath)
+    .pipe(sourcemaps.init())
+    .pipe(concat('min.js'))
+    .pipe(terser())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('./js'));
 }
 exports.jsTask = jsTask;
