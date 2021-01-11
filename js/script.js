@@ -1,9 +1,9 @@
 $(document).ready(function(){
   // AJAX Request
-  var blogCount = 1; 
+  var blogCount = 2; 
   $("#blog-button").click(function() {
     // Load 2 more comments after click
-    blogCount = blogCount + 1; 
+    blogCount = blogCount + 2; 
     // 3 Params - link, data we want to include (POST), callback function
     $("#blog").load("load-blogs.php", {
       // Include data into the value's using POST methods
