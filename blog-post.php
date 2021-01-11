@@ -5,15 +5,13 @@
 <div id="blog">
   <div class="container">
 
-
 <?php
-
   if (isset($_GET['blog_id'])) {
-    //  We convert the key so we can check against it
+    // We convert the key so we can check against it
     $get_blog_id = $_GET['blog_id'];
   }
     
-  // We want the post_id column to equal the blog_id we are catching in the URL
+  // We want the id column to equal the blog_id we are catching in the URL
   $query = "SELECT * FROM blogs WHERE id = $get_blog_id";
   $select_all_posts_query = mysqli_query($connection, $query);
 
