@@ -27,7 +27,7 @@
       <p><span class="glyphicon glyphicon-time"></span> <?php echo $blog_date ?></p>
       <hr>
       <div>
-        <img class="blog-image img-responsive" src="uploads/<?php echo $blog_image; ?>" alt="image">
+        <img class="blog-image img-responsive" data-src="uploads/<?php echo $blog_image; ?>" alt="image">
       </div>
       <hr>
       <p><?php echo $blog_content ?></p>

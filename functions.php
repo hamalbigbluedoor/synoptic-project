@@ -85,7 +85,7 @@ function allImages() {
 /**
 *  Used in gallery.php
 */
-function upload_image() {
+function uploadImage() {
   global $connection;
   
   if (isset($_POST['upload_image'])) {
@@ -171,5 +171,99 @@ function emailValidation() {
       $msg = 'Please fill in all fields';
       $msgClass = 'alert-danger';
     }
+  }
+}
+
+/**
+*  Used in blogs.php to display the 2 latest uploaded blogs
+*/
+function showTwoBlogs() {
+  global $connection;
+
+  $query = "SELECT * FROM blogs LIMIT 2";
+  $select_two_blog = mysqli_query($connection, $query);
+  // Check if data exists
+  if (mysqli_num_rows($select_two_blog) > 0) {
+    while($row = mysqli_fetch_assoc($select_two_blog)) {
+      $blog_id = $row['id'];
+      $blog_title = $row['blog_title'];
+      $blog_date = $row['blog_date'];
+      $blog_content = substr($row['blog_content'], 0, 255) . " ...";
+      $blog_image = $row['blog_image'];
+      ?>
+
+      <h3><?php echo $blog_title ?></h3>
+      <p><span class="glyphicon glyphicon-time"></span> <?php echo $blog_date ?></p>
+      <div>
+        <img class="blog-image img-responsive" data-src="uploads/<?php echo $blog_image; ?>" alt="image">
+      </div>
+      <p><?php echo $blog_content ?></p>
+      <a class="button" href="blog-post.php?blog_id=<?php echo $blog_id; ?>">Read More</a>
+      <hr>
+      <?php
+    }
+  } else {
+    echo "There are no Blogs!";
+  }
+}
+
+/**
+*  Used in blogs.php to display the 2 latest uploaded blogs
+*/
+function recentBlogs() {
+  global $connection;
+
+  $query = "SELECT * FROM blogs ORDER BY id DESC LIMIT 3";
+  $recent_blogs = mysqli_query($connection, $query);
+  // Check if data exists
+  if (mysqli_num_rows($recent_blogs) > 0) {
+    while($row = mysqli_fetch_assoc($recent_blogs)) {
+      $blog_id = $row['id'];
+      $blog_title = $row['blog_title'];
+      $blog_date = $row['blog_date'];
+      $blog_content = substr($row['blog_content'], 0, 155) . " ...";
+      $blog_image = $row['blog_image'];
+      ?>
+
+
+      <a class="blog-card" href="blog-post.php?blog_id=<?php echo $blog_id; ?>">
+        <div class="blog-card-image">
+          <img class="blog-image img-responsive" data-src="uploads/<?php echo $blog_image; ?>" alt="image">
+        </div>
+        <div class="blog-card-text">
+          <p><?php echo $blog_date ?></p>
+          <h3><?php echo $blog_title ?></h3> 
+          <div class="blog-card-summary">
+            <p><?php echo $blog_content ?></p>  
+          </div>
+        </div>
+      </a>
+
+
+      <hr>
+      <?php
+    }
+  }
+}
+
+/**
+*  Used in index.php to display the 3 latest uploaded photos
+*/
+function recentPhotos() {
+  global $connection;
+
+  $query = "SELECT * FROM images ORDER BY id DESC LIMIT 3";
+  $select_all_images_query = mysqli_query($connection, $query);
+
+  // This will pull in images from the database
+  while ($row = mysqli_fetch_assoc($select_all_images_query)) {
+    $image = $row['image_name'];
+    ?>
+
+    <div class="itemBox">
+      <img class="gallery-image img-responsive" data-src="uploads/<?php echo $image; ?>" alt="image">
+    </div>
+
+  <?php 
   }
 }
