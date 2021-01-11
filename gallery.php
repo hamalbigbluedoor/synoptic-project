@@ -3,6 +3,8 @@
 <?php include "./includes/navigation.php" ?>
 <?php include "./includes/subject-list.php" ?>
 
+<?php upload_image(); ?>
+
 <section class="gallery">	
   <div class="product">
 
@@ -12,15 +14,14 @@
 
   </div>
 </section>
-
-<?php add_image(); ?>
-
 <form action="" method="post" enctype="multipart/form-data" class="form">
-  <h2>Upload your Image Now!</h2>
+  <div class="title">
+    <h2>Upload your Image Now!</h2>
+  </div>
   <div class="form-group">
     <label for="image">Choose your local Image:</label>
     <br>
-    <input type="file" class="form-control" name="image">
+    <input type="file" class="form-control" name="image" id="image">
   </div>
   <br>
   <div class="form-group">

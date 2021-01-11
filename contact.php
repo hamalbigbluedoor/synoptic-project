@@ -7,7 +7,9 @@
 
 <body>
   <main class="form">
-    <h2>Contact Me</h2>
+    <div class="title">
+      <h1>Contact Me</h1>
+    </div>
     <?php if($msg != ''): ?>
       <div class="<?php echo $msgClass; ?>"><?php echo $msg; ?></div>
     <?php endif; ?>
