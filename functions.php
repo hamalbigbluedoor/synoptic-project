@@ -50,7 +50,7 @@ function filterImages() {
     $image = $row['image_name'];
     ?>
     <div class="itemBox">
-      <img src="images/<?php echo $image; ?>" alt="image">
+      <img data-src="uploads/<?php echo $image; ?>" alt="image">
     </div>
 
   <?php
@@ -75,7 +75,7 @@ function allImages() {
     ?>
 
     <div class="itemBox">
-      <img src="images/<?php echo $image; ?>" alt="image">
+      <img data-src="uploads/<?php echo $image; ?>" alt="image">
     </div>
 
   <?php 
@@ -83,23 +83,23 @@ function allImages() {
 }
 
 /**
-*  Upload Image
+*  Used in gallery.php
 */
-function add_image() {
+function upload_image() {
   global $connection;
   
   if (isset($_POST['upload_image'])) {
     $image_subject = $_POST['image_subject'];
     // superglobal file is used for type="file"
-    $post_image = $_FILES['image']['name'];
+    $image = $_FILES['image']['name'];
     // File is saved temporarily when we click on 'choose file'
-    $post_image_temp = $_FILES['image']['tmp_name'];
+    $image_temp = $_FILES['image']['tmp_name'];
     // Moves file from temp location to our folder
-    move_uploaded_file($post_image_temp, "./images/$post_image");
+    move_uploaded_file($image_temp, "./uploads/$image");
     // Inserts into referenced column's in images table
     $query = "INSERT INTO images (image_subject_id, image_name)"; 
     // These values are coming in from the form
-    $query .= "VALUES ({$image_subject}, '{$post_image}')";
+    $query .= "VALUES ({$image_subject}, '{$image}')";
 
     $upload_image_query = mysqli_query($connection, $query);
     confirmQuery($upload_image_query);
@@ -126,6 +126,9 @@ function subjectSelectList() {
   }
 }
 
+/**
+*  Used in contact.php 
+*/
 function emailValidation() {
   global $connection;
   global $msg;
