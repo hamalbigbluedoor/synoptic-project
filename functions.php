@@ -50,7 +50,7 @@ function filterImages() {
     $image = $row['image_name'];
     ?>
     <div class="itemBox">
-      <img data-src="uploads/<?php echo $image; ?>" alt="image">
+      <img class="gallery-image" data-src="uploads/<?php echo $image; ?>" alt="image">
     </div>
 
   <?php
@@ -75,7 +75,7 @@ function allImages() {
     ?>
 
     <div class="itemBox">
-      <img data-src="uploads/<?php echo $image; ?>" alt="image">
+      <img class="gallery-image" data-src="uploads/<?php echo $image; ?>" alt="image">
     </div>
 
   <?php 
