@@ -52,12 +52,8 @@ function filterImages() {
     <div class="itemBox">
       <img class="gallery-image" data-src="uploads/<?php echo $image; ?>" alt="image">
     </div>
-
-  <?php
-  } 
-  ?>
-
-<?php
+    <?php
+  }
 }
 
 /**
@@ -73,12 +69,10 @@ function allImages() {
   while ($row = mysqli_fetch_assoc($select_all_images_query)) {
     $image = $row['image_name'];
     ?>
-
     <div class="itemBox">
       <img class="gallery-image" data-src="uploads/<?php echo $image; ?>" alt="image">
     </div>
-
-  <?php 
+    <?php 
   }
 }
 
@@ -96,11 +90,8 @@ function uploadImage() {
     $image_temp = $_FILES['image']['tmp_name'];
     // Moves file from temp location to our folder
     move_uploaded_file($image_temp, "./uploads/$image");
-    // Inserts into referenced column's in images table
     $query = "INSERT INTO images (image_subject_id, image_name)"; 
-    // These values are coming in from the form
     $query .= "VALUES ({$image_subject}, '{$image}')";
-
     $upload_image_query = mysqli_query($connection, $query);
     confirmQuery($upload_image_query);
 
@@ -154,7 +145,6 @@ function emailValidation() {
         $mailTo = "hamal@bigbluedoor.net";
         $headers = "From: " . $mailfrom;
         $txt = "You have received an e-mail from " . $name . ".\n\n" . $message;
-        
         // Checks if the values are sent
         if(mail($mailTo, $subject, $txt, $headers)) {
           // Email sent
@@ -175,7 +165,7 @@ function emailValidation() {
 }
 
 /**
-*  Used in blogs.php to display the 2 latest uploaded blogs
+*  Used in blogs.php to display the first 2 blogs
 */
 function showTwoBlogs() {
   global $connection;
@@ -208,7 +198,75 @@ function showTwoBlogs() {
 }
 
 /**
-*  Used in blogs.php to display the 2 latest uploaded blogs
+*  Used in blog-post.php to display the full blog
+*/
+function singleBlog() {
+  global $connection;
+
+  if (isset($_GET['blog_id'])) {
+    // We convert the key so we can check against it
+    $get_blog_id = $_GET['blog_id'];
+  }
+  // We want the id column to equal the blog_id we are catching in the URL
+  $query = "SELECT * FROM blogs WHERE id = $get_blog_id";
+  $select_all_posts_query = mysqli_query($connection, $query);
+
+  while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+    $blog_title = $row['blog_title'];
+    $blog_date = $row['blog_date'];
+    $blog_content = $row['blog_content'];
+    $blog_image = $row['blog_image'];
+    ?>
+    <h3><?php echo $blog_title ?></h3>
+    <p><span class="glyphicon glyphicon-time"></span> <?php echo $blog_date ?></p>
+    <hr>
+    <div>
+      <img class="blog-image img-responsive" data-src="uploads/<?php echo $blog_image; ?>" alt="image">
+    </div>
+    <hr>
+    <p><?php echo $blog_content ?></p>
+    <?php
+  }
+}
+
+/**
+*  Used in load-blogs.php to display the next 2 blogs on click
+*/
+function loadBlogs() {
+  global $connection;
+  // Key from script.js
+  $blogNewCount = $_POST['blogNewCount'];
+  // Load in +2 more blogs
+  $query = "SELECT * FROM blogs LIMIT $blogNewCount";
+  $select_two_blog = mysqli_query($connection, $query);
+  // Check if data exists
+  if (mysqli_num_rows($select_two_blog) > 0) {
+    while($row = mysqli_fetch_assoc($select_two_blog)){
+      $blog_id = $row['id'];
+      $blog_title = $row['blog_title'];
+      $blog_date = $row['blog_date'];
+      $blog_content = substr($row['blog_content'], 0, 255) . " ...";
+      $blog_image = $row['blog_image'];
+      ?>
+      <div class="container">
+        <h3><?php echo $blog_title ?></h3>
+        <p><span class="glyphicon glyphicon-time"></span><?php echo $blog_date ?></p>
+        <hr>
+        <div>
+          <img class="blog-image img-responsive" src="uploads/<?php echo $blog_image; ?>" alt="image">
+        </div>
+        <p><?php echo $blog_content ?></p>
+        <a class="button" href="blog-post.php?blog_id=<?php echo $blog_id; ?>">Read More</a>
+      </div>
+      <?php
+    }
+  } else {
+    echo "There are no Blogs!";
+  }
+}
+
+/**
+*  Used in index.php to display the 3 latest uploaded blogs
 */
 function recentBlogs() {
   global $connection;
@@ -224,8 +282,6 @@ function recentBlogs() {
       $blog_content = substr($row['blog_content'], 0, 155) . " ...";
       $blog_image = $row['blog_image'];
       ?>
-
-
       <a class="blog-card" href="blog-post.php?blog_id=<?php echo $blog_id; ?>">
         <div class="blog-card-image">
           <img class="blog-image img-responsive" data-src="uploads/<?php echo $blog_image; ?>" alt="image">
@@ -238,8 +294,6 @@ function recentBlogs() {
           </div>
         </div>
       </a>
-
-
       <hr>
       <?php
     }
@@ -259,11 +313,9 @@ function recentPhotos() {
   while ($row = mysqli_fetch_assoc($select_all_images_query)) {
     $image = $row['image_name'];
     ?>
-
     <div class="itemBox">
       <img class="gallery-image img-responsive" data-src="uploads/<?php echo $image; ?>" alt="image">
     </div>
-
-  <?php 
+    <?php 
   }
 }

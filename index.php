@@ -12,7 +12,6 @@
       <h2>Flash Photography</h2>
     </div>
   </section>
-
   <section class="recent-photos">
     <h2>Recent Photos</h2>
     <div class="product">
@@ -20,7 +19,6 @@
     </div>
     <a href="gallery.php" class="main-buttons">View All Photos</a>
   </section>
-
   <section class="recent-blogs">
     <h2>Recent Blogs</h2>
     <?php recentBlogs() ?>

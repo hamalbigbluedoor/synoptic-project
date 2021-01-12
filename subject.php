@@ -5,9 +5,7 @@
 
 <section class="gallery">
   <div class="product">
-
-<?php filterImages(); ?>
-
+    <?php filterImages(); ?>
   </div>
 </section>
 
